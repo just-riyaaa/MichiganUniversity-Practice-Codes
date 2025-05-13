@@ -1,0 +1,16 @@
+#code:
+#Canoe Portage: 1.1 rods to meters, feet, miles, furlongs, and minutes taken to cover that
+'''
+1 rod= 5.0292 meters
+1 furlong= 40 rods
+1 mile= 1609.34 meters
+1 feet= 0.3048 meters
+avg walking speed=3.1 miles per hour'''
+
+num= float(input("enter an integer value:"))
+digits= int(input("enter number of decimal:"))
+d_miles= num * 5.0292 / 1609.34
+print("number of rods:", num, "\nconversions:")
+print("meters:", round(num*5.0292, digits), "\nfeet:", round(num*5.0292/0.3048, digits))
+print("miles:", round(num*5.0292/1609.34, digits), "\nfurlongs:", round(num/40, digits))
+print("time taken:", round(d_miles/3.1*60, digits), "minutes")
