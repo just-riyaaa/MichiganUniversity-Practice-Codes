@@ -1,0 +1,30 @@
+#Richter Scale: energy for 1 richer= 10 ** ((1.5*richer)+4.8) and TNT explodes= 4.184 * 10^9 joules
+print("Richer\t\t\tJoules\t\t\tTNT")
+l=[1, 5, 9.1, 9.2, 9.5]
+for i in l:
+  print (i, "\t\t", 10 ** ((1.5*i)+4.8), "\t\t", (10 ** ((1.5*i)+4.8))/4.184 * (10**9))
+
+'''
+Theory:
+This Python code aims to illustrate the immense energy released by earthquakes of varying magnitudes on the Richter scale and compare this energy to the explosive power of TNT. It utilizes the empirical formula that relates Richter scale magnitude to the energy released in joules. The code then converts this energy into an equivalent amount of TNT explosions, using the given energy yield of one TNT explosion.
+The core of the calculation lies in the formula:
+Energy (Joules) = 10 ** ((1.5 * Richter Magnitude) + 4.8)
+This formula shows an exponential relationship, meaning that even a small increase in Richter magnitude corresponds to a significant increase in the energy released.
+The code then takes the calculated energy in joules and divides it by the energy released by one TNT explosion (4.184 * 10^9 joules) to provide a sense of scale for the earthquake's power in more relatable terms.
+The code iterates through a predefined list of Richter scale magnitudes, calculates the corresponding energy in joules and equivalent TNT explosions for each magnitude, and then prints these values in a tabular format for easy comparison.
+
+Step-wise Explanation:
+1.  The code starts by printing a header row for the output table: "Richer\t\t\tJoules\t\t\tTNT". The `\t` characters are tab spaces used to align the columns in the output.
+2.  A list named `l` is created, containing several floating-point numbers representing different magnitudes on the Richter scale: 1, 5, 9.1, 9.2, and 9.5. These are the earthquake magnitudes for which the energy will be calculated.
+3.  The code then enters a `for` loop that iterates through each element `i` in the list `l`. In each iteration, `i` will hold one of the Richter scale magnitudes.
+4.  Inside the loop, the code calculates the energy released by an earthquake of magnitude `i` using the formula `10 ** ((1.5 * i) + 4.8)`. The `**` operator in Python performs exponentiation. The result of this calculation is the energy in joules.
+5.  The code then calculates the equivalent amount of TNT explosions that would release the same amount of energy. It takes the calculated energy in joules (from the previous step) and divides it by the energy of one TNT explosion, which is `4.184 * (10**9)`. Note that `(10**9)` is Python's way of representing 10 to the power of 9.
+6.  Finally, within each iteration of the loop, the code prints three values, separated by tab spaces:
+    * The current Richter scale magnitude `i`.
+    * The calculated energy in joules.
+    * The calculated equivalent amount of TNT explosions.
+    This creates a row in the output table, showing the Richter magnitude and its corresponding energy and TNT equivalent. The loop continues until all the magnitudes in the list `l` have been processed and printed.
+
+Conclusion:
+This code effectively demonstrates the exponential increase in energy released as the Richter scale magnitude of an earthquake increases. By converting the energy into the equivalent number of TNT explosions, it provides a powerful and easily understandable comparison of the destructive potential of earthquakes of different sizes. The tabular output clearly shows how even a small increase in Richter magnitude (e.g., from 9.1 to 9.5) results in a dramatically larger amount of energy released, equivalent to a significantly greater number of TNT explosions. This highlights the immense power of major earthquakes.
+'''
