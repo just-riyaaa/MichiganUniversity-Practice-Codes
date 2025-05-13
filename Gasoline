@@ -1,0 +1,57 @@
+#Gasoline- program 5
+gallons_str = input("no. of gallons of gasoline: ")
+gallons = float(gallons_str)
+
+#conversion stats
+LITERS_PER_GALLON = 3.7854
+GALLONS_PER_BARREL = 19.5
+CO2_PER_GALLON = 20.0  # in pounds
+BTU_GASOLINE = 115000
+BTU_ETHANOL = 75700
+PRICE_PER_GALLON = 4.00  # in USD
+
+#calculations
+liters = gallons * LITERS_PER_GALLON
+barrels = gallons / GALLONS_PER_BARREL
+co2 = gallons * CO2_PER_GALLON
+ethanol_equivalent = (gallons * BTU_GASOLINE) / BTU_ETHANOL
+cost = gallons * PRICE_PER_GALLON
+
+#results
+print("input:", gallons, "gallons of gasoline.")
+print("In liters:", liters, "L")
+print("Oil required:", barrels, "barrerls")
+print("CO2 produced:", co2, "pounds")
+print("Energy equivalent in ethanol gallons:", ethanol_equivalent)
+print("Price in US dollars:", cost, "$")
+
+'''
+Theory:
+This Python code is designed to take a user-provided quantity of gasoline in gallons and perform several conversions and calculations related to that amount. It converts the gasoline volume to liters, estimates the equivalent amount of crude oil required to produce it in barrels, calculates the amount of carbon dioxide (CO2) produced when that gasoline is burned, determines the energy-equivalent volume of ethanol, and finally calculates the cost of that amount of gasoline based on a given price per gallon.
+The code utilizes a set of predefined conversion factors and constants relevant to gasoline and its production:
+`LITERS_PER_GALLON = 3.7854`**: The standard conversion factor from US gallons to liters.
+`GALLONS_PER_BARREL = 19.5`**: An approximate number of gallons of gasoline that can be refined from one barrel of crude oil.
+`CO2_PER_GALLON = 20.0`**: An estimated amount of carbon dioxide (in pounds) produced when one gallon of gasoline is combusted.
+`BTU_GASOLINE = 115000`**: The approximate energy content of one gallon of gasoline in British Thermal Units (BTUs).
+`BTU_ETHANOL = 75700`**: The approximate energy content of one gallon of ethanol in BTUs. This is used to find the ethanol volume with equivalent energy.
+`PRICE_PER_GALLON = 4.00`**: A defined price per gallon of gasoline in US dollars, used to calculate the total cost.
+The code takes the user's input in gallons, converts it using these constants, and then presents the results of these conversions and calculations in a clear, labeled output.
+
+Step-wise Explanation:
+1.  The code prompts the user to enter the number of gallons of gasoline using the `input()` function. The entered string is then converted to a floating-point number using `float()` and stored in the variable `gallons`. This allows for non-integer values of gallons.
+2.  The code defines a constant `LITERS_PER_GALLON` with the value 3.7854, representing the conversion factor from gallons to liters.
+3.  The code defines a constant `GALLONS_PER_BARREL` with the value 19.5, representing the approximate number of gasoline gallons obtainable from one barrel of crude oil.
+4.  The code defines a constant `CO2_PER_GALLON` with the value 20.0, representing the estimated pounds of CO2 produced per gallon of gasoline burned.
+5.  The code defines a constant `BTU_GASOLINE` with the value 115000, representing the energy content of one gallon of gasoline in BTUs.
+6.  The code defines a constant `BTU_ETHANOL` with the value 75700, representing the energy content of one gallon of ethanol in BTUs.
+7.  The code defines a constant `PRICE_PER_GALLON` with the value 4.00, representing the price of one gallon of gasoline in US dollars.
+8.  The code calculates the equivalent volume of gasoline in liters by multiplying the user-provided `gallons` by the `LITERS_PER_GALLON` constant. The result is stored in the variable `liters`.
+9.  The code calculates the approximate number of barrels of crude oil required to produce the given `gallons` of gasoline by dividing `gallons` by the `GALLONS_PER_BARREL` constant. The result is stored in the variable `barrels`.
+10. The code calculates the estimated amount of CO2 produced when the given `gallons` of gasoline are burned by multiplying `gallons` by the `CO2_PER_GALLON` constant. The result is stored in the variable `co2`.
+11. The code calculates the volume of ethanol that would provide the same amount of energy as the given `gallons` of gasoline. It does this by multiplying `gallons` by the `BTU_GASOLINE` constant and then dividing the result by the `BTU_ETHANOL` constant. The result is stored in the variable `ethanol_equivalent`.
+12. The code calculates the total cost of the given `gallons` of gasoline by multiplying `gallons` by the `PRICE_PER_GALLON` constant. The result is stored in the variable `cost`.
+13. Finally, the code prints a series of informative messages to the console, displaying the original input in gallons and the results of each calculation with appropriate units and labels.
+
+Conclusion:
+This program effectively takes a user-specified amount of gasoline and provides several useful related metrics. It converts the volume to liters, estimates the crude oil needed for production, calculates the CO2 emissions from combustion, determines the energy-equivalent volume of ethanol, and computes the total cost based on a set price. This demonstrates how a simple program can utilize conversion factors and constants to provide context and related information for a common quantity like gallons of gasoline, offering insights into its environmental impact, energy equivalence, and economic cost.
+'''
