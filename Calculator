@@ -1,0 +1,79 @@
+#Calculator
+def calculator():
+    print("Simple Calculator")
+
+    while True:
+        # Get input
+        num1 = float(input("Enter first number: "))
+        operator = input("Enter operator (+, -, *, /): ")
+        num2 = float(input("Enter second number: "))
+
+        # Perform calculation
+        if operator == '+':
+            result = num1 + num2
+        elif operator == '-':
+            result = num1 - num2
+        elif operator == '*':
+            result = num1 * num2
+        elif operator == '/':
+            if num2 == 0:
+                print("Error: Cannot divide by zero.")
+                continue
+            result = num1 / num2
+        else:
+            print("Invalid operator.")
+            continue
+
+        print("Result:", result)
+
+        # Ask to continue
+        again = input("Do you want to calculate again? (yes/no): ").lower()
+        if again != "yes":
+            print("Goodbye!")
+            break
+
+# Run the calculator
+calculator()
+
+'''
+Theory:
+This Python code defines a simple command-line calculator. It allows the user to perform basic arithmetic operations (addition, subtraction, multiplication, and division) on two numbers. The calculator continues to operate in a loop until the user explicitly chooses to exit.
+The core functionality involves:
+* Input: Taking numerical input from the user for the two operands and the desired arithmetic operator.
+* Operation: Performing the selected arithmetic operation based on the user's input.
+* Error Handling: Checking for division by zero and invalid operator input.
+* Output: Displaying the calculated result or an error message.
+* Looping: Providing an option to perform multiple calculations without restarting the program.
+The code uses conditional statements (`if`, `elif`, `else`) to determine which operation to perform and to handle potential errors. The `while True` loop ensures that the calculator runs continuously until a specific condition (user inputting "no") is met to break the loop.
+
+Step-wise Explanation:
+1.  `def calculator():`: This line defines a function named `calculator` that encapsulates the entire calculator logic.
+2.  `print("Simple Calculator")`: This line prints a welcoming message to the user.
+3.  `while True:`: This starts an infinite loop. The code inside this loop will continue to execute repeatedly until a `break` statement is encountered.
+4.  `num1 = float(input("Enter first number: "))`: This line prompts the user to enter the first number. The `input()` function reads the user's input as a string, and `float()` converts it to a floating-point number, allowing for decimal inputs. The result is stored in the variable `num1`.
+5.  `operator = input("Enter operator (+, -, *, /): ")`: This line prompts the user to enter the desired arithmetic operator (+, -, \*, /) as a string and stores it in the variable `operator`.
+6.  `num2 = float(input("Enter second number: "))`: This line prompts the user to enter the second number, converts it to a float, and stores it in the variable `num2`.
+7.  `if operator == '+':`: This starts a series of conditional checks to determine which operation to perform. If the `operator` is '+', the code inside this block is executed.
+8.  `result = num1 + num2`: If the operator is '+', this line calculates the sum of `num1` and `num2` and stores the result in the variable `result`.
+9.  `elif operator == '-':`: If the first condition is false, this condition checks if the `operator` is '-'.
+10. `result = num1 - num2`: If the operator is '-', this line calculates the difference between `num1` and `num2` and stores the result in `result`.
+11. `elif operator == '*':`: If the previous conditions are false, this condition checks if the `operator` is '\*'.
+12. `result = num1 * num2`: If the operator is '\*', this line calculates the product of `num1` and `num2` and stores the result in `result`.
+13. `elif operator == '/':`: If the previous conditions are false, this condition checks if the `operator` is '/'.
+14. `if num2 == 0:`: Inside the division block, this nested `if` statement checks if the second number (`num2`) is zero.
+15. `print("Error: Cannot divide by zero.")`: If `num2` is zero, this line prints an error message.
+16. `continue`: If division by zero is attempted, this statement immediately jumps to the beginning of the `while` loop, prompting the user for new input.
+17. `result = num1 / num2`: If `num2` is not zero, this line calculates the quotient when `num1` is divided by `num2` and stores the result in `result`.
+18. `else:`: If none of the valid operators (+, -, \*, /) are entered, the code inside this `else` block is executed.
+19. `print("Invalid operator.")`: If an invalid operator is entered, this line prints an error message.
+20. `continue`: If an invalid operator is entered, this statement jumps to the beginning of the `while` loop for new input.
+21. `print("Result:", result)`: If a valid operation is performed without a division by zero error, this line prints the calculated `result`.
+22. `again = input("Do you want to calculate again? (yes/no): ").lower()`: This line asks the user if they want to perform another calculation and converts their input to lowercase.
+23. `if again != "yes":`: This condition checks if the user's input (stored in `again`) is not equal to "yes".
+24. `print("Goodbye!")`: If the user does not want to calculate again, this line prints a goodbye message.
+25. `break`: This statement exits the `while True` loop, ending the calculator program.
+26. `calculator()`: This line calls the `calculator` function to start the execution of the calculator program.
+
+Conclusion:
+This code provides a functional and user-friendly simple calculator. It effectively handles basic arithmetic operations, includes error checking for division by zero and invalid operators, and allows for continuous calculations until the user decides to quit. The use of a `while` loop and conditional statements makes the program interactive and responsive to user input.
+'''
