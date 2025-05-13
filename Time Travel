@@ -1,0 +1,54 @@
+#time travel
+# Constants
+C = 299792458  # Speed of light in meters per second
+REST_MASS = 70000  # Mass of the ship at rest (in kg)
+
+speed_percent = float(input("Enter the speed as a percentage of the speed of light (e.g., 50 for 50%): "))
+
+# Convert percentage to actual speed
+v = (speed_percent / 100.0) * C
+factor = 1 / ((1 - (v*2 / C2)) * 0.5)
+new_mass = REST_MASS * factor
+
+distances = {
+    "Alpha Centauri": 4.3,
+    "Barnard's Star": 6.0,
+    "Betelgeuse": 309.0,
+    "Andromeda Galaxy": 2000000.0
+}
+
+#results
+print("\nAt", speed_percent, "% of the speed of light:")
+print("Mass of the ship: {:.2f} kg".format(new_mass))
+print("\nTime experienced by astronauts:")
+for place, distance in distances.items():
+    time = distance / factor
+    print("- {}: {:.2f} years".format(place, time))
+
+
+'''
+Theory:
+This Python code explores some of the fascinating consequences of traveling at relativistic speeds, a significant fraction of the speed of light. It touches upon two key concepts from Einstein's theory of special relativity: **relativistic mass increase** and **time dilation**.
+The code first calculates the mass of a spacecraft as its speed approaches a user-defined percentage of the speed of light. According to relativity, the mass of an object increases as its speed relative to an observer increases. The formula used incorporates the speed of light (C) and the spacecraft's velocity (v) to determine the relativistic mass.
+Next, the code calculates the time experienced by astronauts traveling to various astronomical distances at that relativistic speed. Due to time dilation, time passes slower for an object moving at a high speed relative to a stationary observer. The code uses the same relativistic factor to calculate the "proper time" experienced by the astronauts for journeys to different stars and galaxies, where the distances are given in light-years.
+The code uses a predefined dictionary of astronomical distances in light-years. For each destination, it calculates the time experienced by the astronauts during the journey, taking into account the time dilation effect.
+
+Step-wise Explanation:
+1.  The code defines two constants:
+    * `C = 299792458`: The speed of light in meters per second, a fundamental constant in relativity.
+    * `REST_MASS = 70000`: The mass of the spacecraft when it is at rest, in kilograms.
+2.  The code prompts the user to enter the desired speed as a percentage of the speed of light. The input is read as a string, converted to a floating-point number using `float()`, and stored in the variable `speed_percent`. For example, entering `50` would represent 50% of the speed of light.
+3.  The code calculates the actual velocity (`v`) of the spacecraft in meters per second by dividing the `speed_percent` by 100.0 and then multiplying by the speed of light `C`.
+4.  The code calculates the relativistic factor (`factor`). This factor arises from the Lorentz transformations in special relativity and describes how time, length, and mass are affected by relative motion. The formula used seems to be a simplification or a potentially incorrect form of the Lorentz factor. The correct Lorentz factor ($\gamma$) is given by $\gamma = \frac{1}{\sqrt{1 - (v^2 / c^2)}}$. The code uses `(v*2 / C2)` which is not the standard formula. Assuming this is an intentional simplification for the example, it proceeds with this calculation.
+5.  The code calculates the new, relativistic mass (`new_mass`) of the spacecraft by multiplying its `REST_MASS` by the calculated `factor`. This demonstrates the concept of mass increase at high speeds.
+6.  A dictionary named `distances` is created, storing the distances to various astronomical objects in light-years. The keys are the names of the objects, and the values are their distances.
+7.  The code prints a formatted message indicating the speed entered by the user as a percentage of the speed of light.
+8.  The code prints the calculated `new_mass` of the spacecraft, formatted to two decimal places.
+9.  The code then prints a heading "Time experienced by astronauts:".
+10. The code iterates through the `distances` dictionary using a `for` loop. For each `place` (name of the astronomical object) and its corresponding `distance` (in light-years):
+    * The code calculates the time experienced by the astronauts (`time`) during the journey. This is done by dividing the `distance` (which represents the time it would take light to travel that far in Earth's frame) by the relativistic `factor`. This demonstrates the concept of time dilation – the astronauts experience less time passing than an observer on Earth.
+    * The code prints a formatted message for each destination, showing the name of the place and the calculated travel time experienced by the astronauts, formatted to two decimal places and labeled as "years".
+
+Conclusion:
+This code provides a glimpse into the counter-intuitive effects of special relativity, specifically mass increase and time dilation, at speeds approaching the speed of light. It shows that as a spacecraft accelerates to a significant fraction of `C`, its mass increases, requiring more energy for further acceleration. Furthermore, the time experienced by the astronauts on such a journey would be significantly less than the time measured by observers on Earth, especially for interstellar and intergalactic travel. The code uses a simplified relativistic factor, but it effectively illustrates these fundamental concepts and their implications for hypothetical time travel scenarios.
+'''
