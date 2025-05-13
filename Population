@@ -1,0 +1,55 @@
+#Population
+years = int(input("Please enter the number of years to predict the population: "))
+
+#constants
+initial_population = 307357870  # Starting population
+seconds_in_a_year = 365 * 24 * 60 * 60  # Total number of seconds in a year
+birth_rate = 1 / 7  # Birth every 7 seconds
+death_rate = 1 / 13  # Death every 13 seconds
+immigrant_rate = 1 / 35  # Immigrant every 35 seconds
+
+# Calculation
+seconds_in_input_years = years * seconds_in_a_year
+births = seconds_in_input_years * birth_rate
+deaths = seconds_in_input_years * death_rate
+immigrants = seconds_in_input_years * immigrant_rate
+
+predicted_population = initial_population + births - deaths + immigrants
+
+#result
+print(f"Predicted population after {years} years: {int(predicted_population)}")
+Predicted population after 90 years: 575587144
+
+'''
+Theory:
+This Python code predicts future population growth based on a simple demographic model. It takes an initial population and applies constant birth, death, and immigration rates over a specified number of years. The core idea is to simulate how these rates, when applied over time, contribute to an increase or decrease in the overall population.
+The model assumes:
+
+Constant Rates: Birth, death, and immigration rates remain constant throughout the prediction period. This is a simplification, as real-world rates fluctuate due to various factors.
+Net Change Calculation: The change in population is calculated by summing the total births and immigrants and subtracting the total deaths over the specified period.
+Discrete Events: The rates are defined as events occurring every X seconds (e.g., a birth every 7 seconds). The code converts these to events per year and then multiplies by the number of years to get total events.
+The formula essentially calculates:
+Predicted Population = Initial Population + (Total Births) - (Total Deaths) + (Total Immigrants)
+Where:
+* Total Births = (Seconds in prediction period) / (Seconds per birth)
+* Total Deaths = (Seconds in prediction period) / (Seconds per death)
+* Total Immigrants = (Seconds in prediction period) / (Seconds per immigrant)
+
+Step-wise Explanation:
+1.  The code first prompts the user to enter the number of years for which they want to predict the population. The input is read as a string, converted to an integer using `int()`, and stored in the variable `years`.
+2.  The code defines several constants:
+    * `initial_population = 307357870`: This sets the starting population for the prediction.
+    * `seconds_in_a_year = 365 * 24 * 60 * 60`: This calculates the total number of seconds in a non-leap year (365 days \* 24 hours/day \* 60 minutes/hour \* 60 seconds/minute).
+    * `birth_rate = 1 / 7`: This represents one birth occurring every 7 seconds.
+    * `death_rate = 1 / 13`: This represents one death occurring every 13 seconds.
+    * `immigrant_rate = 1 / 35`: This represents one immigrant arriving every 35 seconds.
+3.  The code calculates the total number of seconds in the specified prediction period (`years`) by multiplying `years` by `seconds_in_a_year`. This value is stored in `seconds_in_input_years`.
+4.  The code calculates the total number of births over the prediction period by multiplying `seconds_in_input_years` by `birth_rate`. The result is stored in the `births` variable.
+5.  Similarly, the code calculates the total number of deaths by multiplying `seconds_in_input_years` by `death_rate`. The result is stored in the `deaths` variable.
+6.  The code calculates the total number of immigrants by multiplying `seconds_in_input_years` by `immigrant_rate`. The result is stored in the `immigrants` variable.
+7.  The core population prediction is made by starting with the `initial_population`, adding the `births` and `immigrants`, and subtracting the `deaths`. The final predicted population is stored in the `predicted_population` variable.
+8.  Finally, the code prints the result using an f-string. It displays the number of years the prediction was made for (`years`) and the `predicted_population`. The `int()` function is used inside the f-string to display the population as a whole number, as population counts are typically integers. The example output `Predicted population after 90 years: 575587144` is provided to illustrate the format.
+
+Conclusion:
+This program demonstrates a basic approach to population prediction using constant birth, death, and immigration rates. By taking the number of years as input, it calculates the total changes due to these demographic events and provides a projected future population. While simplistic in its assumptions (constant rates over time), it serves as a clear illustration of how to model population dynamics and utilize time-based rates to forecast growth. The code effectively showcases fundamental arithmetic operations and basic input/output in Python for a practical application.
+'''
