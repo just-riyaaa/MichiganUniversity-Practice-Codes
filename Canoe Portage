@@ -14,3 +14,30 @@ print("number of rods:", num, "\nconversions:")
 print("meters:", round(num*5.0292, digits), "\nfeet:", round(num*5.0292/0.3048, digits))
 print("miles:", round(num*5.0292/1609.34, digits), "\nfurlongs:", round(num/40, digits))
 print("time taken:", round(d_miles/3.1*60, digits), "minutes")
+
+'''
+Theory:
+This Python code is designed to perform unit conversions and calculate the estimated time taken to cover a distance, specifically focusing on the context of "canoe portage," where distances are often measured in rods. The core idea is to take a distance input in rods and then convert it to several other common units of length: meters, feet, miles, and furlongs. Additionally, it calculates the approximate time it would take to walk that distance, assuming an average walking speed.
+The code utilizes predefined conversion factors based on standard measurements:
+1 rod = 5.0292 meters:** This is the fundamental conversion factor used as the basis for all other length conversions.
+1 furlong = 40 rods:** This defines the relationship between rods and furlongs.
+1 mile = 1609.34 meters:** This provides the conversion from meters to miles.
+1 foot = 0.3048 meters:** This defines the conversion from meters to feet.
+Average walking speed = 3.1 miles per hour:** This is the assumed speed used for the time calculation.
+The code first takes user input for the distance in rods and the desired number of decimal places for the output. It then performs the necessary arithmetic operations using the conversion factors to calculate the equivalent distances in the target units. Finally, it calculates the time taken by first determining the distance in miles and then using the average walking speed to estimate the travel time in minutes.
+
+Step-wise Explanation:
+1.  The code starts by taking an input from the user and storing it in the variable `num`. This input is expected to be a numerical value representing the distance in rods. The `float()` function ensures that the input is treated as a decimal number, allowing for non-integer rod values.
+2.  Next, the code prompts the user to enter the desired number of decimal places for the output and stores this integer value in the variable `digits`. This will be used later to round the conversion results for better readability.
+3.  The code calculates the distance in miles by multiplying the input `num` (distance in rods) by the conversion factor from rods to meters (5.0292) and then dividing the result by the number of meters in a mile (1609.34). The result is stored in the variable `d_miles`.
+4.  The code then prints a descriptive label "number of rods:" followed by the original input value stored in `num`, and a newline character to start the next output on a new line. It also prints a heading "conversions:" to indicate the following output will be the converted values.
+5.  The code calculates and prints the equivalent distance in meters. It multiplies the input `num` by the conversion factor from rods to meters (5.0292) and rounds the result to the number of decimal places specified by the `digits` variable.
+6.  Similarly, the code calculates and prints the equivalent distance in feet. It multiplies the input `num` by the conversion factor from rods to meters (5.0292), divides this result by the conversion factor from meters to feet (0.3048), and rounds the final value to the number of decimal places specified by `digits`.
+7.  The code calculates and prints the equivalent distance in miles. It uses the previously calculated `d_miles` variable and rounds it to the number of decimal places specified by `digits`.
+8.  The code calculates and prints the equivalent distance in furlongs. It divides the input `num` (distance in rods) by the number of rods in a furlong (40) and rounds the result to the number of decimal places specified by `digits`.
+9.  Finally, the code calculates and prints the estimated time taken to cover the distance. It divides the previously calculated `d_miles` (distance in miles) by the average walking speed (3.1 miles per hour) to get the time in hours. This result is then multiplied by 60 to convert it to minutes, and the final value is rounded to the number of decimal places specified by `digits`.
+
+Conclusion:
+This code provides a straightforward tool for converting distances given in rods to several other common units and for estimating the walking time over that distance. By taking user input for the distance and desired precision, it offers a flexible way to understand the magnitude of a portage in different units and to get a rough estimate of the time required to traverse it on foot, assuming a standard walking pace. The calculations are based on well-defined conversion factors and a provided average speed, making it useful for planning and understanding distances in contexts where rods might be a primary unit of measurement.
+main.
+'''
