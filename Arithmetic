@@ -1,0 +1,43 @@
+#Arithmetic- program 4
+num1 = int(input("Enter the first integer: "))
+num2 = int(input("Enter the second integer: "))
+
+#calculations
+sum_result = num1 + num2
+diff_result = num1 - num2
+prod_result = num1 * num2
+quotient = num1 // num2
+remainder = num1 % num2
+
+#results
+print("The sum of", num1, "and", num2, "is", sum_result)
+print("The difference if", num2, "is subtracted from", num1, "is", diff_result)
+print("The product of", num1, "and", num2, "is", prod_result)
+print("The quotient when", num1, "is divided by", num2, "is", quotient)
+print("The remainder when", num1, "is divided by", num2, "is", remainder)
+
+
+'''
+Theory:
+This Python code performs basic arithmetic operations on two integer numbers provided by the user. It takes two integer inputs, then calculates their sum, difference (first number minus the second), product, integer quotient (the whole number part of the division), and remainder (the amount left over after integer division). Finally, it displays the results of these calculations in a user-friendly format.
+The core of the code involves using Python's built-in arithmetic operators:
+`+` for addition
+`-` for subtraction
+`*` for multiplication
+`//` for integer division (truncates towards negative infinity)
+`%` for the modulo operator (returns the remainder of the division)
+The code demonstrates fundamental arithmetic operations and how to take integer input from a user and display calculated results. It's a basic example of interactive programming and utilizing core arithmetic functionalities in Python.
+
+Step-wise Explanation:
+1.  The code prompts the user to enter the first integer using the `input()` function. The entered string is then converted to an integer using the `int()` function and stored in the variable `num1`.
+2.  Similarly, the code prompts the user to enter the second integer using `input()`, converts it to an integer using `int()`, and stores it in the variable `num2`.
+3.  The code calculates the sum of `num1` and `num2` using the `+` operator and stores the result in the variable `sum_result`.
+4.  The code calculates the difference between `num1` and `num2` (specifically, `num2` subtracted from `num1`) using the `-` operator and stores the result in the variable `diff_result`.
+5.  The code calculates the product of `num1` and `num2` using the `*` operator and stores the result in the variable `prod_result`.
+6.  The code calculates the integer quotient when `num1` is divided by `num2` using the `//` operator (integer division) and stores the result in the variable `quotient`. This operation discards any fractional part of the division result.
+7.  The code calculates the remainder when `num1` is divided by `num2` using the `%` operator (modulo operator) and stores the result in the variable `remainder`.
+8.  The code then uses the `print()` function to display the results of the calculations in a clear and readable format. Each `print()` statement outputs a descriptive message along with the original numbers (`num1`, `num2`) and the corresponding calculated result (`sum_result`, `diff_result`, `prod_result`, `quotient`, `remainder`).
+
+Conclusion:
+This simple program effectively demonstrates how to take integer input from a user in Python and perform basic arithmetic operations. It clearly presents the results of the addition, subtraction, multiplication, integer division, and modulo operations. This code serves as a fundamental example of how to interact with the user and perform numerical computations in Python, showcasing the use of basic arithmetic operators and input/output functions.
+'''
