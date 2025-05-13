@@ -1,0 +1,50 @@
+#Windchill- program 3
+# Function to calculate Wind Chill Temperature Index
+def calculate_wind_chill(temp, wind_speed):
+    wct_index = 35.74 + 0.6215 * temp - 35.75 * wind_speed*0.16 + 0.4275 * temp * wind_speed*0.16
+    return wct_index
+print("Wind Chill Temperature Index Calculator\n")      # display heading
+
+# Predefined values
+predefined_values = [
+    (10.0, 15.0),
+    (0.0, 25.0),
+    (-10.0, 35.0)]
+
+for temp, wind in predefined_values:       #calculating predefined values
+    wct = calculate_wind_chill(temp, wind)
+    print("Air Temp:", temp, "°F, Wind Speed:", wind, "MPH -> Wind Chill Index:", round(wct, 2))
+#main
+user_temp = float(input("Enter air temperature in °F: "))
+user_wind = float(input("Enter wind speed in MPH: "))
+user_wct = calculate_wind_chill(user_temp, user_wind)
+
+print("For Air Temp:", user_temp, "°F and Wind Speed:", user_wind, "MPH")
+print("Wind Chill Temperature Index is:", round(user_wct, 2))
+
+
+'''
+Theory:
+This Python code calculates the Wind Chill Temperature (WCT) Index, which is a measure of how cold the air feels when wind is taken into account. It uses a specific formula based on the air temperature in Fahrenheit (°F) and the wind speed in miles per hour (MPH). The formula implemented in the `calculate_wind_chill` function is an empirical model designed to approximate the cooling effect of wind on human skin.
+The code first defines a function to perform this calculation. It then demonstrates the use of this function with a set of predefined temperature and wind speed values. Finally, it prompts the user to input their own air temperature and wind speed to calculate the corresponding wind chill index.
+The core of the code is the `calculate_wind_chill` function, which directly implements the wind chill formula:
+WCT Index = 35.74 + (0.6215 \* Air Temperature) - (35.75 \* Wind Speed\<sup\>0.16\</sup\>) + (0.4275 \* Air Temperature \* Wind Speed\<sup\>0.16\</sup\>)
+This formula highlights that the wind chill index decreases (feels colder) as either the air temperature drops or the wind speed increases. The non-linear effect of wind speed (due to the exponent of 0.16) indicates that the impact of increasing wind speed is more significant at lower wind speeds.
+
+Step-wise Explanation:
+1.  The code defines a function named `calculate_wind_chill` that takes two arguments: `temp` (air temperature in °F) and `wind_speed` (wind speed in MPH).
+2.  Inside the `calculate_wind_chill` function, it calculates the Wind Chill Temperature Index (`wct_index`) using the provided formula. Note that `wind_speed*0.16` is likely a simplification or a slight variation of the standard wind chill formula where wind speed is raised to the power of 0.16.
+3.  The function then returns the calculated `wct_index`.
+4.  The code prints a heading "Wind Chill Temperature Index Calculator\\n" to the console, providing a clear title for the program.
+5.  A list named `predefined_values` is created. This list contains tuples, where each tuple holds a pair of values: air temperature (°F) and wind speed (MPH). These are example values that the program will calculate the wind chill for.
+6.  The code enters a `for` loop that iterates through each tuple in the `predefined_values` list. In each iteration, the tuple is unpacked into two variables: `temp` and `wind`.
+7.  Inside the loop, the `calculate_wind_chill` function is called with the current `temp` and `wind` values, and the returned wind chill index is stored in the variable `wct`.
+8.  The code then prints a formatted string showing the "Air Temp", "Wind Speed", and the calculated "Wind Chill Index", rounded to two decimal places using `round(wct, 2)`. This demonstrates the function's output for the predefined scenarios.
+9.  After processing the predefined values, the code enters the "main" part of the program. It prompts the user to enter the current air temperature in °F using the `input()` function, converts the input to a floating-point number using `float()`, and stores it in the variable `user_temp`.
+10. Similarly, the code prompts the user to enter the current wind speed in MPH, converts it to a float, and stores it in the variable `user_wind`.
+11. The `calculate_wind_chill` function is called again, this time using the `user_temp` and `user_wind` values provided by the user. The resulting wind chill index is stored in the variable `user_wct`.
+12. Finally, the code prints two lines of output. The first line reiterates the user-entered air temperature and wind speed. The second line displays the calculated "Wind Chill Temperature Index", rounded to two decimal places, for the user's specific conditions.
+
+Conclusion:
+This program effectively calculates the Wind Chill Temperature Index based on a given air temperature and wind speed. It demonstrates the calculation using predefined values and then allows the user to input their own conditions to find out how cold it truly feels. The use of a dedicated function (`calculate_wind_chill`) makes the code modular and reusable. The output is clearly formatted, providing the user with easily understandable results. This program is a practical application of a meteorological formula to provide a more accurate perception of cold weather conditions.
+'''
