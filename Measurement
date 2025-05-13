@@ -1,0 +1,72 @@
+#measurement- program 6
+#input
+mph = float(input("Enter speed in miles per hour: "))
+
+#ref for conversions
+MILES_TO_METERS = 1609.34
+SECONDS_PER_HOUR = 3600
+BARLEYCORNS_PER_METER = 117.647
+YARDS_PER_MILE = 1760
+FURLONGS_PER_MILE = YARDS_PER_MILE / 220
+SECONDS_PER_DAY = 86400
+SECONDS_PER_FORTNIGHT = 1209600  # 14 * 24 * 3600
+FEET_PER_MILE = 5280
+FEET_PER_SECOND_SPEED_OF_SOUND = 1130
+SPEED_OF_LIGHT_M_PER_S = 299_792_458
+
+#calculations
+mpsec = mph * MILES_TO_METERS / SECONDS_PER_HOUR
+barleycorns_per_day = mpsec * BARLEYCORNS_PER_METER * SECONDS_PER_DAY
+furlongs_per_fortnight = mph * FURLONGS_PER_MILE * 24 * 14
+feet_per_second = mph * FEET_PER_MILE / SECONDS_PER_HOUR
+mach_number = feet_per_second / FEET_PER_SECOND_SPEED_OF_SOUND
+percentage_speed_of_light = (mpsec / SPEED_OF_LIGHT_M_PER_S) * 100
+
+#results
+print(f"Converted Speeds:")
+print(f"Barleycorns per day: {barleycorns_per_day:.2e}")
+print(f"Furlongs per fortnight: {furlongs_per_fortnight:.2f}")
+print(f"Mach number: {mach_number:.4f}")
+print(f"Percentage of speed of light: {percentage_speed_of_light:.10f}%")
+
+'''
+Theory:
+This Python code takes a speed input from the user in miles per hour (mph) and converts it to several other units of speed and distance over time. It utilizes a predefined set of conversion factors to perform these calculations, providing a diverse range of speed and distance representations, some common and some more unusual.
+The code calculates:
+Meters per second (mpsec): The standard SI unit of speed, derived from mph.
+Barleycorns per day: A less common unit of length (barleycorn) expressed as a distance covered per day.
+Furlongs per fortnight: Another less common unit, showing distance in furlongs covered over a period of two weeks.
+Feet per second: A common unit of speed, often used in specific contexts.
+Mach number: The ratio of the calculated speed to the speed of sound, indicating how many times faster than sound the input speed is.
+Percentage of the speed of light: The calculated speed expressed as a percentage of the speed of light, illustrating how close the input speed is to the ultimate speed limit in the universe.
+The code demonstrates unit conversion and the application of these conversions across different time scales, as well as comparison to fundamental physical constants like the speed of sound and the speed of light.
+
+Step-wise Explanation:
+1.  The code prompts the user to enter a speed in miles per hour using the `input()` function. The entered string is converted to a floating-point number using `float()` and stored in the variable `mph`. This allows for non-integer speed values.
+2.  The code defines several constants representing conversion factors:
+    * `MILES_TO_METERS = 1609.34`: Conversion factor from miles to meters.
+    * `SECONDS_PER_HOUR = 3600`: Number of seconds in one hour.
+    * `BARLEYCORNS_PER_METER = 117.647`: Number of barleycorns in one meter.
+    * `YARDS_PER_MILE = 1760`: Number of yards in one mile.
+    * `FURLONGS_PER_MILE = YARDS_PER_MILE / 220`: Number of furlongs in one mile (since 1 furlong = 220 yards).
+    * `SECONDS_PER_DAY = 86400`: Number of seconds in one day.
+    * `SECONDS_PER_FORTNIGHT = 1209600`: Number of seconds in one fortnight (14 days).
+    * `FEET_PER_MILE = 5280`: Number of feet in one mile.
+    * `FEET_PER_SECOND_SPEED_OF_SOUND = 1130`: Approximate speed of sound in feet per second.
+    * `SPEED_OF_LIGHT_M_PER_S = 299_792_458`: Speed of light in meters per second. The underscore in the number is for readability in Python.
+3.  The code calculates the speed in meters per second (`mpsec`) by multiplying the input `mph` by `MILES_TO_METERS` to get meters per hour and then dividing by `SECONDS_PER_HOUR` to convert to meters per second.
+4.  The code calculates the distance covered in barleycorns per day (`barleycorns_per_day`) by multiplying the speed in meters per second (`mpsec`) by `BARLEYCORNS_PER_METER` to get barleycorns per second and then by `SECONDS_PER_DAY` to get barleycorns per day.
+5.  The code calculates the distance covered in furlongs per fortnight (`furlongs_per_fortnight`) by multiplying the input `mph` by `FURLONGS_PER_MILE` to get furlongs per hour and then by 24 (hours per day) and 14 (days per fortnight) to get furlongs per fortnight.
+6.  The code calculates the speed in feet per second (`feet_per_second`) by multiplying the input `mph` by `FEET_PER_MILE` to get feet per hour and then dividing by `SECONDS_PER_HOUR` to convert to feet per second.
+7.  The code calculates the Mach number (`mach_number`) by dividing the speed in feet per second (`feet_per_second`) by the approximate `FEET_PER_SECOND_SPEED_OF_SOUND`.
+8.  The code calculates the speed as a percentage of the speed of light (`percentage_speed_of_light`) by dividing the speed in meters per second (`mpsec`) by the `SPEED_OF_LIGHT_M_PER_S` and then multiplying by 100 to express it as a percentage.
+9.  Finally, the code prints the converted speeds and related values using f-strings for formatted output:
+    * "Converted Speeds:" is printed as a heading.
+    * Barleycorns per day is printed in scientific notation with two decimal places (`:.2e`).
+    * Furlongs per fortnight is printed with two decimal places (`:.2f`).
+    * Mach number is printed with four decimal places (`:.4f`).
+    * Percentage of speed of light is printed with ten decimal places (`:.10f`) followed by a percentage sign.
+
+Conclusion:
+This program demonstrates a wide range of unit conversions applied to a user-provided speed in miles per hour. It showcases conversions to standard units like meters per second and feet per second, as well as less common units like barleycorns per day and furlongs per fortnight. Furthermore, it provides a comparison to fundamental physical constants by calculating the Mach number and the percentage of the speed of light. The use of defined constants and formatted output makes the code readable and the results easily interpretable, highlighting the diverse ways in which speed can be expressed and understood across different scales and contexts.
+'''
