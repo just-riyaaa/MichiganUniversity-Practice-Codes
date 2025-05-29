@@ -1,0 +1,93 @@
+#vocab
+import os
+import random
+import glob
+
+# Load vocabulary file into a dictionary
+def load_vocab(filename):
+    vocab = {}
+    with open(filename, 'r', encoding='utf-8') as file:
+        for line in file:
+            if ':' in line:
+                eng, span = line.strip().split(':')
+                vocab[eng.strip()] = [word.strip() for word in span.split(',')]
+    return vocab
+
+# Save missed questions to a file
+def save_missed_words(filename, missed_dict):
+    with open(filename, 'w', encoding='utf-8') as file:
+        for eng, span_list in missed_dict.items():
+            line = f"{eng}: {','.join(span_list)}\n"
+            file.write(line)
+
+# Quiz the user
+def quiz_user(vocab, num_questions):
+    correct = 0
+    missed = {}
+
+    selected_words = random.sample(list(vocab.items()), num_questions)
+
+    for eng, span_list in selected_words:
+        print(f"\nEnglish word: {eng}")
+        user_answers = []
+
+        for i in range(len(span_list)):
+            ans = input(f"Word [{i + 1}]: ").strip().lower()
+            user_answers.append(ans)
+
+        if sorted(user_answers) == sorted([s.lower() for s in span_list]):
+            print("Correct!")
+            correct += 1
+        else:
+            print("Incorrect.")
+            missed[eng] = span_list
+
+    return correct, missed
+
+# Main function
+def main():
+    print("Welcome to the vocabulary quiz program.")
+
+    # Step 1: List available .txt files
+    vocab_files = glob.glob("*.txt")
+    if not vocab_files:
+        print("No vocabulary files found in this directory. Exiting.")
+        return
+
+    print("\nAvailable vocabulary files:")
+    for f in vocab_files:
+        print(" ", f)
+
+    # Step 2: Get valid file from user
+    filename = input("Please enter a filename to use: ").strip()
+    while filename not in vocab_files:
+        filename = input("Invalid file. Please enter one from the list: ").strip()
+
+    # Step 3: Load file into dictionary
+    vocab = load_vocab(filename)
+    print(f"\n{len(vocab)} entries found.")
+
+    # Step 4: Get number of words to quiz on
+    while True:
+        try:
+            num = int(input("How many words would you like to be quizzed on? "))
+            if 1 <= num <= len(vocab):
+                break
+            else:
+                print("Enter a valid number within the range.")
+        except ValueError:
+            print("Please enter an integer.")
+
+    # Step 5: Run quiz
+    correct, missed = quiz_user(vocab, num)
+    print(f"\n{correct} out of {num} correct.")
+
+    # Step 6: Optionally save missed
+    if missed:
+        out = input("Enter an output filename to save missed words (or press Enter to skip): ").strip()
+        if out:
+            save_missed_words(out, missed)
+            print(f"Missed words saved to {out}")
+
+if __name__ == "__main__":
+    main()
