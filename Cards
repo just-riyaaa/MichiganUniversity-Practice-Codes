@@ -1,0 +1,44 @@
+#Cards
+import random
+
+class Card:
+    SUITS = ["♠", "♥", "♦", "♣"]
+    RANKS = [None, "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
+    COLORS = {"♠": "black", "♣": "black", "♥": "red", "♦": "red"}
+
+    def __init__(self, suit, rank):
+        self.suit_val = suit  # 0-3
+        self.rank_val = rank  # 1-13
+
+    def suit(self):
+        return Card.SUITS[self.suit_val]
+
+    def rank(self):
+        return self.rank_val
+
+    def color(self):
+        return Card.COLORS[self.suit()]
+
+    def opposite_color(self, other):
+        return self.color() != other.color()
+
+    def __str__(self):
+        return f"{Card.RANKS[self.rank_val]}{self.suit()}"
+
+    def __repr__(self):
+        return str(self)
+
+class Deck:
+    def __init__(self):
+        self.deck = [Card(suit, rank)
+                     for suit in range(4)
+                     for rank in range(1, 14)]
+
+    def shuffle(self):
+        random.shuffle(self.deck)
+
+    def deal(self):
+        return self.deck.pop()
+
+    def __len__(self):
+        return len(self.deck)
