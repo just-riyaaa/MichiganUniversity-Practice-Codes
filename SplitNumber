@@ -1,0 +1,47 @@
+#SplitNumber
+
+def is_valid_whole_number(s):
+    return s.isdigit()
+
+def is_valid_piece_length(length_str, number_str):
+    return length_str.isdigit() and int(length_str) > 0 and len(number_str) % int(length_str) == 0
+
+def main():
+
+    while True:
+        number_str = input("Enter a whole number: ")
+        if is_valid_whole_number(number_str):
+            break
+        print("Invalid input. Please enter a valid whole number.")
+
+    while True:
+        piece_len_str = input("Enter the number of digits per piece: ")
+        if is_valid_piece_length(piece_len_str, number_str):
+            break
+        print("Invalid input. The piece length must be a proper divisor of the number's digit count.")
+
+    piece_len = int(piece_len_str)
+    total_len = len(number_str)
+    num_pieces = total_len // piece_len
+
+    index = 0
+    prev_piece = ""
+    is_increasing = True
+    print("The pieces are: ", end="")
+
+    while index < total_len:
+        piece = number_str[index:index+piece_len]
+        print(piece, end=", " if index + piece_len < total_len else "\n")
+
+        if prev_piece != "":
+            if int(piece) <= int(prev_piece):
+                is_increasing = False
+        prev_piece = piece
+        index += piece_len
+
+    if is_increasing:
+        print("The pieces are in increasing order.")
+    else:
+        print("The pieces are NOT in increasing order.")
+
+main()
