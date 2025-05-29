@@ -1,0 +1,53 @@
+#Word Completion
+
+import string
+
+def clean_word(word):
+    return ''.join([c for c in word if c.isalpha()]).lower()
+
+def fill_completions(c_dict, fd):
+    for line in fd:
+        words = line.strip().split()
+        for word in words:
+            clean = clean_word(word)
+            if len(clean) <= 1:
+                continue
+            for idx, char in enumerate(clean):
+                key = (idx, char)
+                if key not in c_dict:
+                    c_dict[key] = set()
+                c_dict[key].add(clean)
+
+def find_completions(prefix, c_dict):
+    result = None
+    for idx, char in enumerate(prefix.lower()):
+        key = (idx, char)
+        if key not in c_dict:
+            return set()
+        if result is None:
+            result = c_dict[key].copy()
+        else:
+            result &= c_dict[key]
+    return result if result else set()
+
+def main():
+    filename = "ap_docsw.txt"  # Replace this with your actual file path
+    try:
+        with open(filename, "r") as fd:
+            c_dict = {}
+            fill_completions(c_dict, fd)
+
+        while True:
+            prefix = input("Enter a prefix to complete (# to quit): ").strip()
+            if prefix == "#":
+                break
+            matches = find_completions(prefix, c_dict)
+            if matches:
+                print(f"Completions for '{prefix}': {matches}")
+            else:
+                print(f"No completions found for '{prefix}'.")
+    except FileNotFoundError:
+        print("File not found. Please make sure 'ap_docs.txt' is present.")
+
+if __name__ == "__main__":
+    main()
