@@ -1,0 +1,48 @@
+#Search Files
+import os
+import string
+
+def remove_stop_words():
+
+    with open("doc1.txt", "r") as f:
+        stopwords = set(word.strip().lower() for word in f)
+    return stopwords
+
+def clean_line(line, stopwords):
+    words = line.strip().lower().translate(str.maketrans('', '', string.punctuation)).split()
+    return [word for word in words if word not in stopwords]
+
+def search_in_file(filename, query_list, stopwords):
+    matches = []
+    with open(filename, 'r') as f:
+        for i, line in enumerate(f, start=1):
+            words = clean_line(line, stopwords)
+            for j in range(len(words) - len(query_list) + 1):
+                if words[j:j + len(query_list)] == query_list:
+                    matches.append(i)
+                    break
+    return matches
+
+def main():
+    stopwords = remove_stop_words()
+    query = input("Enter your query:\n").strip().lower()
+    query_words = query.translate(str.maketrans('', '', string.punctuation)).split()
+    filtered_query = [word for word in query_words if word not in stopwords]
+
+    if not filtered_query:
+        print("Query only contains stopwords or is empty.")
+        return
+
+    print(f"\nProcessed Query: {' '.join(filtered_query)}\n")
+
+    for filename in os.listdir():
+        if filename.endswith('.txt') and filename != "stoplist.txt":
+            matches = search_in_file(filename, filtered_query, stopwords)
+            print(filename)
+            if matches:
+                print("found at rows:", matches)
+            else:
+                print("query not found...\n")
+
+if __name__ == "__main__":
+    main()
