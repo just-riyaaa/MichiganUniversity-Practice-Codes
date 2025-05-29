@@ -1,0 +1,78 @@
+#Movie&Actor
+def build_movie_dict(filename):
+    movie_dict = {}
+    with open(filename, 'r') as file:
+        for line in file:
+            parts = line.strip().split(',')
+            actor = parts[0].strip()
+            movies = [movie.strip() for movie in parts[1:]]
+            for movie in movies:
+                if movie not in movie_dict:
+                    movie_dict[movie] = set()
+                movie_dict[movie].add(actor)
+    return movie_dict
+
+
+def movie_set_operation(movie_dict, movie1, operator, movie2):
+    set1 = movie_dict.get(movie1, set())
+    set2 = movie_dict.get(movie2, set())
+    
+    if operator == '|':
+        return set1 | set2
+    elif operator == '&':
+        return set1 & set2
+    elif operator == '^':
+        return set1 ^ set2
+    else:
+        return set()
+
+
+def find_coactors(movie_dict, actor_name):
+    coactors = set()
+    for movie, actors in movie_dict.items():
+        if actor_name in actors:
+            coactors.update(actors)
+    coactors.discard(actor_name)  # remove self
+    return coactors
+
+
+def main():
+    movie_dict = build_movie_dict('movies.txt')
+    while True:
+        print("\nMenu:")
+        print("1. Perform operation on two movies (|, &, ^)")
+        print("2. Find co-actors of an actor")
+        print("3. Exit")
+
+        choice = input("Enter choice (1-3): ")
+
+        if choice == '1':
+            expr = input("Enter expression (Movie1 | Movie2, Movie1 & Movie2, Movie1 ^ Movie2): ")
+            parts = expr.split()
+            if len(parts) == 3:
+                movie1, op, movie2 = parts
+                result = movie_set_operation(movie_dict, movie1, op, movie2)
+                print("Resulting Actors:")
+                for actor in sorted(result):
+                    print(actor)
+            else:
+                print("Invalid expression.")
+
+        elif choice == '2':
+            actor = input("Enter actor name: ").strip()
+            coactors = find_coactors(movie_dict, actor)
+            if coactors:
+                print(f"Co-actors with {actor}:")
+                for co in sorted(coactors):
+                    print(co)
+            else:
+                print(f"No co-actors found for {actor}")
+
+        elif choice == '3':
+            break
+        else:
+            print("Invalid choice.")
+
+
+if __name__ == '__main__':
+    main()
